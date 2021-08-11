@@ -15,6 +15,7 @@ struct ContentView: View {
     @State var a: CGFloat = 0.0
     
     func refresh(color: Color) {
+        selectedColor = color
         UIColor(color).getRed(&r, green: &g, blue: &b, alpha: &a)
         print("\(r), \(g), \(b), \(a)")
     }
@@ -31,6 +32,11 @@ struct ContentView: View {
                 Button("Accent") { refresh(color: .accentColor) }
                 Button("Green") { refresh(color: Color("ExampleColor")) }
             }
+            HStack {
+                selectedColor
+                Color(.sRGB, red: Double(r), green: Double(g), blue: Double(b), opacity: Double(a))
+            }
+            .frame(height: 40)
             Spacer()
         }
         .padding()
